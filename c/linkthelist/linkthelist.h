@@ -12,5 +12,6 @@ typedef struct _list{
 
 void add(List* plist, int number);
 void print(List * plist);
+void clear(List * plist);
 
 #endif

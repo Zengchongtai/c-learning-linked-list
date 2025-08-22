@@ -25,7 +25,7 @@ int main()
     scanf("%d", &number);
     Node *p,*q;
     int isfound = 0;
-    for (p = list.head,q = list.head; p;q=p, p = p->next)
+    for (p = list.head,q = 0; p;q=p, p = p->next)
     {
         if (p->value == number)
         {
@@ -37,7 +37,7 @@ int main()
             {
                 list.head = p->next;// 若q不存在,则说明p是链表的第一个结点,把head移向下一个
             }
-            printf("find %d\n%d has already been deleted", number, number);
+            printf("find %d\n%d has already been deleted\n", number, number);
             isfound = 1;
             free(p);
             break;
@@ -49,9 +49,28 @@ int main()
     }
 
     print(&list);
+    clear(&list);
+    printf("clear\n");
+
+
+
     return 0;
 }
 
+
+// 清除链表
+void clear(List * plist)
+{
+    Node *p, *q;
+    p = plist->head;
+    while (p)
+    {
+        q = p->next;
+        free(p);
+        p = q;
+    }
+    plist->head = NULL;// 将plist->head置为NULL,防止plist->head为野指针,指向已释放的内存
+}
 
 
 // 遍历链表
