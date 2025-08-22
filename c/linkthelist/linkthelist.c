@@ -2,25 +2,70 @@
 #include <stdlib.h>
 #include "linkthelist.h"
 
-
-void add(List* plist, int number);
 int main()
 {   
     List list;
     int number;
     list.head = NULL; //有一个node的指针叫做head(头指针),它一开始等于NULL
     do
-    {
+    {   
+        printf("input a number: ");
         scanf("%d", &number);
         if (number != -1)
         {
             add(&list, number);
-
         }
     } while (number != -1);
+
+    // 遍历
+    print(&list);
+
+    // 搜索一个结点并删除
+    printf("which number do you want to delete?\n");
+    scanf("%d", &number);
+    Node *p,*q;
+    int isfound = 0;
+    for (p = list.head,q = list.head; p;q=p, p = p->next)
+    {
+        if (p->value == number)
+        {
+            if ( q )// 判断q是否存在
+            {
+                q->next = p->next;// 让q跳过p直接指向p的下一个
+            }
+            else
+            {
+                list.head = p->next;// 若q不存在,则说明p是链表的第一个结点,把head移向下一个
+            }
+            printf("find %d\n%d has already been deleted", number, number);
+            isfound = 1;
+            free(p);
+            break;
+        }
+    }
+    if (!isfound)
+    {
+        printf("can not found %d\n",number);
+    }
+
+    print(&list);
     return 0;
 }
 
+
+
+// 遍历链表
+void print(List * plist)
+{
+    Node *p;
+    for (p = plist->head; p; p = p->next)
+    {
+        printf("%d\t",p->value);
+    }
+    printf("\n");
+}
+
+// 添加链表
 void add(List* plist, int number)
 {
     // add to linked-list
