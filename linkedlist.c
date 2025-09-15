@@ -99,6 +99,23 @@ void delete_node(node* l, int position)
     node_need_to_be_deleted = NULL;
 }
 
+// 删除中间节点(若链表个数为偶数,则删除中间靠后那个节点均不计头节点) 链表头指针
+// 实现思路: 快慢指针
+void delete_middle_node(node* l)
+{
+    node* fast = l -> next;
+    node* slow = l; // 慢指针 负责定位中间节点的前置节点
+    while(fast!=NULL && fast -> next != NULL)
+    {
+        fast = fast -> next -> next;
+        slow = slow -> next;
+    }
+    node* temp = slow -> next;
+    slow -> next = temp -> next;
+    free(temp);
+    temp = NULL;
+}
+
 // 清空链表 链表头指针 清空设置(clear_config=0删除整个链表,包括头指针;clear_config=1仅保留头指针,其余全部清空)
 void clear_linkedlist(node* l, int clear_config)
 {   
@@ -116,6 +133,51 @@ void clear_linkedlist(node* l, int clear_config)
     {
         l -> next = NULL;
     }
+}
+
+// 反转链表(头指针保持不变) 链表头指针
+/*
+
+====== 大致实现思路 ======
+
+null    1           2   3   4   5   6
+^       ^           ^
+|       |           |
+first   second      third
+
+null    1       2           3   4   5   6
+        ^       ^           ^
+        |       |           |
+        first   second      third
+
+先让s指向f
+再更新f移到s位置上
+再更新s移到t位置上
+再更新t移到s的下一个位置上
+
+循环即可.
+
+====== 其他思路 ======
+
+遍历,新建一个链表,然后头插法即可.
+
+*/
+
+void reverse_linkedlist(node* l)
+{
+    node* f = NULL; // first
+    node* s = l -> next;
+    node* t = s -> next;
+
+    while(t!=NULL)
+    {
+        s -> next = f;
+        f = s;
+        s = t;
+        t = s -> next;
+    }
+    s -> next = f; // 将最后一个节点(也就是反转后新链表的第一个节点)连接到倒数第二个节点上(也就是反转后新链表的第二个节点)
+    l -> next = s; // 更新头节点指向第一个节点
 }
 
 

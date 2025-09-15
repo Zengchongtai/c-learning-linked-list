@@ -73,7 +73,7 @@ int main()
     insert_tail_linkedlist(list,8);
     insert_tail_linkedlist(list,1);
     insert_tail_linkedlist(list,0);
-    traversal_linkedlist(list,1);
+    traversal_linkedlist(list,0);
     reverse_linkedlist(list);
-    traversal_linkedlist(list,1);
+    traversal_linkedlist(list,0);
 }
