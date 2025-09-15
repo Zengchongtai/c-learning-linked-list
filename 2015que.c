@@ -1,9 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include "linkedlist.h"
 
-
-#define elementType int
 #define n 8
 
 /*
@@ -15,40 +12,12 @@
 
 // 题目状态: 已完成
 
-typedef struct NODE{
-    elementType data;
-    struct NODE* next;
-}node;
 
-// 初始化链表
-node* initialize_linkedlist()
-{
-    node* head = (node*)malloc(sizeof(node));
-    head -> data = 114514;
-    head -> next = NULL;
-    return head;
-}
-
-// 尾插法
-void insert_tail_linkedlist(node* l, elementType insert_data)
-{
-    node* p = l;
-    node* new_node = (node*)malloc(sizeof(node));
-
-    while(p->next!=NULL)
-    {
-        p = p -> next;
-    }
-
-    p -> next = new_node;
-    new_node -> data = insert_data;
-    new_node -> next =NULL;
-}
 
 // 检查并删除绝对值重复的数字
 void mainfuc(node* l)
 {
-    int num_appear_times[n] = {0};
+    int num_appear_times[n+1] = {0}; // 数组长度应为n+1 0 1 2 3 4 5 6 7 8 ... n
     for (int i=0;i<n;i++)
     {
         num_appear_times[i] = 0;
@@ -79,18 +48,7 @@ void mainfuc(node* l)
     }
 }
 
-// 遍历
-void traversal_linkedlist(node* l)
-{
-    node* p = l -> next; // 忽略头指针
-    printf("\n\n===== start traversal =====\n\n");
-    while(p!=NULL)
-    {
-        printf("%d ",p -> data);
-        p = p -> next;
-    }
-    printf("\n\n===== end traversal =====\n\n");
-}
+
 
 
 
@@ -108,9 +66,9 @@ int main()
     insert_tail_linkedlist(test,8);
     insert_tail_linkedlist(test,1);
     insert_tail_linkedlist(test,4);
-    traversal_linkedlist(test);
+    traversal_linkedlist(test,1);
     mainfuc(test);
-    traversal_linkedlist(test);
+    traversal_linkedlist(test,1);
 
     
     
