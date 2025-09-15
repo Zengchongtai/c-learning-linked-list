@@ -1,25 +1,6 @@
 // linkedlist.c
 #include "linkedlist.h"
 
-/*
-// 此代码用以提供标准的单链表
-// 以下有关链表位置顺序: 头指针(0节点) -> 1节点 -> 2节点 ...
-
-#ifndef _LINKEDLIST_H_
-#define _LINKEDLIST_H_
-
-#include <stdio.h>
-#include <stdlib.h>
-
-#define elementType int
-#define DEFAULT_HEAD_NODE_DATA 114514 // 头节点默认数据
-
-typedef struct NODE{
-    elementType data;
-    struct NODE* next;
-}node;
-*/
-
 // [代码置顶] 获取链表长度 链表头指针 (返回结果不包含头指针)
 int getlength_linkedlist(node* l)
 {
@@ -91,13 +72,13 @@ void traversal_linkedlist(node* l, int print_config)
     node* p;
     if (print_config==0){p = l;}
     else {p = l -> next;}
-    printf("\n\n===== start traversing =====\n");
+    printf("\n\n===== start traversing  =====\n");
     while(p!=NULL)
     {
         printf("%d ",p -> data);
         p = p -> next;
     }
-    printf("\n===== traverse finished=====\n\n");
+    printf("\n===== traverse finished =====\n\n");
 }
 
 
