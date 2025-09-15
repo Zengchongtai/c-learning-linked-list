@@ -15,7 +15,7 @@
 
 
 // 检查并删除绝对值重复的数字
-void mainfuc(node* l)
+void mainfunc(node* l)
 {
     int num_appear_times[n+1] = {0}; // 数组长度应为n+1 0 1 2 3 4 5 6 7 8 ... n
     for (int i=0;i<n;i++)
@@ -67,7 +67,7 @@ int main()
     insert_tail_linkedlist(test,1);
     insert_tail_linkedlist(test,4);
     traversal_linkedlist(test,1);
-    mainfuc(test);
+    mainfunc(test);
     traversal_linkedlist(test,1);
 
     

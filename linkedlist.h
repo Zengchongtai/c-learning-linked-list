@@ -25,7 +25,7 @@ void insert_head_linkedlist(node* l, elementType insert_data);
 void insert_linkedlist(node* l, elementType insert_data, int position);
 void traversal_linkedlist(node* l, int print_config);
 void delete_node(node* l, int position);
-void delete_middle_node(node* l);
+node* find_middle_node(node* l, int return_config);
 void clear_linkedlist(node* l, int clear_config);
 void reverse_linkedlist(node* l);
 

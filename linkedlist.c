@@ -99,21 +99,25 @@ void delete_node(node* l, int position)
     node_need_to_be_deleted = NULL;
 }
 
-// 删除中间节点(若链表个数为偶数,则删除中间靠后那个节点均不计头节点) 链表头指针
-// 实现思路: 快慢指针
-void delete_middle_node(node* l)
+// 找到中间节点 链表头指针 返回节点设置(return_config=0,返回中间节点前置节点.若节点为偶数个,则返回的是中间靠前的节点;return_config=1或其他,返回中间节点.若节点为偶数个,则返回的是中间靠后的节点)
+node* find_middle_node(node* l, int return_config)
 {
     node* fast = l -> next;
-    node* slow = l; // 慢指针 负责定位中间节点的前置节点
-    while(fast!=NULL && fast -> next != NULL)
-    {
-        fast = fast -> next -> next;
-        slow = slow -> next;
+    node* slow = l;
+    while(fast!=NULL && fast->next!=NULL)
+    {   
+        fast = fast -> next -> next; // 快指针走两步
+        slow = slow -> next; // 慢指针走一步 
     }
-    node* temp = slow -> next;
-    slow -> next = temp -> next;
-    free(temp);
-    temp = NULL;
+    // 快指针走到最后一个节点时慢指针恰好指向中间节点的前一个节点
+    if (return_config==0)
+    {
+        return slow; // 返回的是中间节点的前置节点
+    }
+    else
+    {
+        return slow -> next; // 返回的是中间节点
+    }
 }
 
 // 清空链表 链表头指针 清空设置(clear_config=0删除整个链表,包括头指针;clear_config=1仅保留头指针,其余全部清空)
